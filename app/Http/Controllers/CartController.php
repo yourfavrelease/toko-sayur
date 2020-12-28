@@ -17,6 +17,7 @@ class CartController extends Controller
         $item = sayuran::where('id',$request->id)->first();
 
         $items = new barangterbeli();
+        $items->id = $item->id;
         $items->nama_barang = $item->nama_sayuran;
         $items->harga_barang = $item->harga_sayuran;
         $items->jumlah_beli = (int)$request->qty;

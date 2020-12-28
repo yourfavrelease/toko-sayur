@@ -40,57 +40,7 @@
                 </table>
             </div>
 
-            <div class="row align-items-center justify-content-md-center">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        {{-- custom pagination dan hasilnya buruk --}}
-                        @if ($data->hasPages())
-                            @if (!$data->onFirstPage())
-                                @if ($data->currentPage() != 2)
-                                    <li class="page-item btn" wire:click="gotoPage(1)">
-                                        <a class="page-link">
-                                            First Page
-                                        </a>
-                                    </li>
-                                @endif
-
-                                @if ($data->currentPage() == $data->lastPage())
-                                    <li class="page-item btn" wire:click="previousPage">
-                                        <a class="page-link">
-                                            Previous Page
-                                        </a>
-                                    </li>
-                                @else
-                                    <li class="page-item btn" wire:click="previousPage">
-                                        <a class="page-link">
-                                            {{ $data->currentPage() - 1 }}
-                                        </a>
-                                    </li>
-                                @endif
-                            @endif
-                            <li class="page-item btn active">
-                                <a class="page-link">
-                                    {{ $data->currentPage() }}
-                                </a>
-                            </li>
-                            @if ($data->hasMorePages())
-                                @if ($data->lastPage() - $data->currentPage() >= 2)
-                                    <li class="page-item btn" wire:click="nextPage">
-                                        <a class="page-link">
-                                            {{ $data->currentPage() + 1 }}
-                                        </a>
-                                    </li>
-                                @endif
-                                <li class="page-item btn" wire:click="gotoPage({{ $data->lastPage() }})">
-                                    <a class="page-link">
-                                        LastPage
-                                    </a>
-                                </li>
-                            @endif
-                        @endif
-                    </ul>
-                </nav>
-            </div>
+            
         </div>
 
         @if ($form == 'aktif')

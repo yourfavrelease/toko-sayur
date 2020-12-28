@@ -25,7 +25,7 @@ class Sayur extends Component
 
     public function render()
     {
-        $DATA = ModelSayuran::orderBy('updated_at', 'desc')->paginate(5);
+        $DATA = ModelSayuran::orderBy('updated_at', 'desc')->get();
         return view('livewire.sayur', [
             'data' => $DATA,
         ]);
