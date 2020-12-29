@@ -41,6 +41,11 @@
                         <a class="nav-link" href="/admin/sayur/list">Sayuran</a>
                     </li>
                 </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <a href="/logout">
+                        <button class="btn btn-danger my-2 my-sm-0" type="button">logout</button>
+                    </a>
+                </form>
             </div>
         </div>
     </nav>

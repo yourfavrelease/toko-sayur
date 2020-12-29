@@ -7,6 +7,7 @@ use App\Models\pesanan;
 use Illuminate\Support\Facades\Route;
 use App\Models\sayuran as ModelSayuran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 /*
@@ -194,21 +195,49 @@ Route::get('lacak',function(){
 
 // route ADMIN
 
-Route::get('/admin/transaksi/list', function () {
+Route::get('login', function(){
+    return view('admin.login');
+})->middleware('guest')->name('login');
 
-    return view('admin.transaksi_list', [
-        'page' => 'transaksi',
-    ]);
+Route::post('login', function(Request $request){
+    $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            return redirect('/admin/transaksi/list');
+        }
+        return redirect()->back();
 });
 
-Route::get('/admin/sayur/list', function () {
-    return view('admin.barang_list', [
-        'page' => 'barang',
-    ]);
-});
 
-Route::get('/admin/pembayaran/list', function () {
-    return view('admin.pembayaran_list', [
-        'page' => 'pembayaran',
-    ]);
+Route::middleware('auth')->group(function(){
+
+    Route::get('/logout', function () {
+        
+        Auth::logout();
+
+        print("ANJAY");
+        
+        return redirect('/login');
+    });
+
+    Route::get('/admin/transaksi/list', function () {
+
+        return view('admin.transaksi_list', [
+            'page' => 'transaksi',
+        ]);
+    });
+    
+    Route::get('/admin/sayur/list', function () {
+        return view('admin.barang_list', [
+            'page' => 'barang',
+        ]);
+    });
+    
+    Route::get('/admin/pembayaran/list', function () {
+        return view('admin.pembayaran_list', [
+            'page' => 'pembayaran',
+        ]);
+    });
+    
 });
