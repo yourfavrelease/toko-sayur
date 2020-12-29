@@ -40,6 +40,9 @@
                     <li class="nav-item {{ ($page == 'barang') ? 'active' : ''}}">
                         <a class="nav-link" href="/admin/sayur/list">Sayuran</a>
                     </li>
+                    <li class="nav-item {{ ($page == 'pengiriman') ? 'active' : ''}}">
+                        <a class="nav-link" href="/admin/pengiriman/list">Pengiriman</a>
+                    </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <a href="/logout">

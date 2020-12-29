@@ -28,6 +28,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Tanggal Order</th>
+                            <th scope="col">Kode Pesanan</th>
                             <th scope="col">Status Transaksi</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -39,6 +40,7 @@
                             <th scope="row">{{$count}}</th>
                             <td>{{$item->nama_pemesan}}</td>
                             <td>{{$item->created_at}}</td>
+                            <td>{{$item->kode}}</td>
                             <td>{{$item->status}}</td>
                             <td>
                                 <button wire:click="setDetail({{$item->id}})" type="button" class="btnshowdetil btn btn-primary">Detil</button>
@@ -92,9 +94,9 @@
                         <p class="detail identitas"><strong>Total Barang</strong></p>
                         <p class="detail identitas"><strong>Total Biaya</strong></p>
                         <p class="detail identitas"><strong>Metode Pembayaran</strong></p>
+                        <p class="detail identitas"><strong>Pengiriman</strong></p>
+                        <p class="detail identitas"><strong>Alamat</strong></p>
                         <p class="detail identitas"><strong>Status</strong></p>
-
-
                     </div>
                     <div class="col">
 
@@ -104,6 +106,8 @@
                         <p class="detail identitas">{{$DETAIL_DATA->total_barang}} item</p>
                         <p class="detail identitas">Rp {{$DETAIL_DATA->total}}</p>
                         <p class="detail identitas">{{$DETAIL_DATA->metode_bayar}}</p>
+                        <p class="detail identitas">{{$DETAIL_DATA->jenis_pengiriman}} - Rp {{$DETAIL_DATA->biaya_pengiriman}}</p>
+                        <p class="detail identitas">{{$DETAIL_DATA->alamat_pemesan}}</p>
                         <p class="detail identitas">{{$DETAIL_DATA->status}} <br>
                             <span wire:click="doUpdate" class="btn badge badge-success">Update</span>
                         </p>

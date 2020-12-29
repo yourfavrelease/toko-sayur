@@ -20,6 +20,7 @@ class CartController extends Controller
         $items->id = $item->id;
         $items->nama_barang = $item->nama_sayuran;
         $items->harga_barang = $item->harga_sayuran;
+        $items->satuan = $item->satuan;
         $items->jumlah_beli = (int)$request->qty;
         $items->subtotal = $items->harga_barang * $items->jumlah_beli;
         // TODO

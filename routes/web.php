@@ -3,6 +3,7 @@
 use App\Http\Controllers\CartController;
 use App\Models\barangterbeli;
 use App\Models\metodepembayaran;
+use App\Models\pengiriman;
 use App\Models\pesanan;
 use Illuminate\Support\Facades\Route;
 use App\Models\sayuran as ModelSayuran;
@@ -24,6 +25,8 @@ use Illuminate\Support\Facades\Session;
 Route::get('/', function () {
     $DATA = ModelSayuran::orderBy('updated_at', 'desc')->get();
     $PAYMENT = metodepembayaran::get();
+    $SHIPPING = pengiriman::get();
+    
     $CART = null;
     if (Session::has('cart')) {
         $CART = Session::get('cart', '');
@@ -33,6 +36,7 @@ Route::get('/', function () {
         'page' => 'dashboard',
         'cart' => $CART,
         'payment' => $PAYMENT,
+        'shipping' => $SHIPPING,
     ]);
 });
 
@@ -40,6 +44,7 @@ Route::get('/details/{id}', function ($id) {
 
     $ITEM = ModelSayuran::where('id', $id)->first();
     $PAYMENT = metodepembayaran::get();
+    $SHIPPING = pengiriman::get();
 
     $DATA = ModelSayuran::take(8)->get();
 
@@ -61,6 +66,7 @@ Route::get('/details/{id}', function ($id) {
         'cart' => $CART,
         'page' => '',
         'payment' => $PAYMENT,
+        'shipping' => $SHIPPING,
 
     ]);
 });
@@ -100,15 +106,19 @@ Route::get('/checkout', function () {
 Route::post('/checkout', function (Request $request) {
 
     $PAYMENT = metodepembayaran::get();
+    $SHIPPING = pengiriman::get();
 
+    $SHIP = pengiriman::where('id',$request->city)->first();
     // make sure transaction post
     $transaksi = new pesanan();
     $transaksi->nama_pemesan = $request->name;
     $transaksi->alamat_pemesan = $request->address;
-    $transaksi->status = 'Menunggu Pembayaran';
+    $transaksi->status = 'Menunggu Dibayar oleh pembeli';
     $transaksi->total = Session::get('cart')->total;
     $transaksi->total_barang = Session::get('cart')->qty;
-    $transaksi->dalam_kota = ($request->city == "true") ? true : false;
+    // $transaksi->dalam_kota = ($request->city == "true") ? true : false;
+    $transaksi->jenis_pengiriman = $SHIP->nama;
+    $transaksi->biaya_pengiriman = $SHIP->biaya;
     $P = metodepembayaran::where('nama_metode',$request->payment)->first();
     $transaksi->metode_bayar = (string)$P->nama_metode . " - " . (string)$P->no_rekening;
 
@@ -139,6 +149,7 @@ Route::post('/checkout', function (Request $request) {
                 'cart' => $cart,
                 'page' => '',
                 'payment' => $PAYMENT,
+                'shipping' => $SHIPPING,
                 'error_msg' => $kurangi->nama_sayuran . " SUDAH OUT OF STOCK",
             ]);
         }
@@ -155,6 +166,7 @@ Route::post('/checkout', function (Request $request) {
         $barang->nama_barang = $item->nama_barang;
         $barang->jumlah_beli = $item->jumlah_beli;
         $barang->harga_barang = $item->harga_barang;
+        $barang->satuan = $item->satuan;
         $barang->subtotal = $item->subtotal;
         $barang->save();
 
@@ -176,6 +188,7 @@ Route::post('/checkout', function (Request $request) {
         'cart' => $cart,
         'page' => '',
         'payment' => $PAYMENT,
+        'shipping' => $SHIPPING,
         'error_msg' => null,
 
     ]);
@@ -185,11 +198,13 @@ Route::get('lacak',function(){
     $cart = Session::get('cart', '');
 
     $PAYMENT = metodepembayaran::get();
+    $SHIPPING = pengiriman::get();
 
     return view('user.pesanan',[
         'cart' => $cart,
         'page' => 'lacak',
         'payment' => $PAYMENT,
+        'shipping' => $SHIPPING,
     ]);
 });
 
@@ -237,6 +252,12 @@ Route::middleware('auth')->group(function(){
     Route::get('/admin/pembayaran/list', function () {
         return view('admin.pembayaran_list', [
             'page' => 'pembayaran',
+        ]);
+    });
+
+    Route::get('/admin/pengiriman/list', function(){
+        return view('admin.pengiriman',[
+            'page' => 'pengiriman',
         ]);
     });
     

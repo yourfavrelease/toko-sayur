@@ -116,12 +116,12 @@
     <div class="row my-1">
         <div class="col-3 text-right">
             <ul class="list-group">
-                <li class="list-group-item"><strong> Dalam Kota surabaya </strong></li>
+                <li class="list-group-item"><strong> Pengiriman </strong></li>
             </ul>
         </div>
         <div class="col">
             <ul class="list-group">
-                <li class="list-group-item">{{($DATA->total_barang) ? 'ya' : 'tidak'}}</li>
+                <li class="list-group-item">{{$DATA->jenis_pengiriman}} - Rp {{$DATA->biaya_pengiriman}}</li>
 
             </ul>
         </div>
@@ -147,7 +147,7 @@
                         <th scope="row">{{$count}}</th>
                         <td>{{$item->nama_barang}}</td>
                         <td>Rp {{$item->harga_barang}}</td>
-                        <td>{{$item->jumlah_beli}}</td>
+                        <td>{{$item->jumlah_beli}} {{$item->satuan}}</td>
                         <td>Rp {{$item->subtotal}}</td>
                     </tr>
                     <?php $count++;?>

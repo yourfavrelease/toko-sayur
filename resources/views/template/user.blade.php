@@ -198,10 +198,11 @@
 
                         <!-- pilih metode pembayaran -->
                         <div class="form-group">
-                            <label for="inputpembayaran">Dalam Kota Surabaya</label>
+                            <label for="inputpembayaran">Pengiriman</label>
                             <select name="city" class="form-control" id="inputpembayaran">
-                                <option value="true">Dalam Kota</option>
-                                <option value="false">Luar Kota</option>
+                                @foreach ($shipping as $item)
+                                <option value="{{$item->id}}">{{$item->nama}} - Rp {{$item->biaya}}</option>
+                                @endforeach
                             </select>
                         </div>
                 </div>

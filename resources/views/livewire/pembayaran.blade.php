@@ -123,10 +123,10 @@
                             </div>
 
                             @if ($form_type == 'edit')
-                                <button wire:click="submitedit({{ $data_id }})" type="button"
+                                <button wire:click="submitedit({{ $data_id }})" type="submit"
                                     class="btn btn-success">Submit Edit</button>
                             @else
-                                <button wire:click="submitadd" type="button" class="btn btn-success">Submit New
+                                <button wire:click="submitadd" type="submit" class="btn btn-success">Submit New
                                     Item</button>
                             @endif
                             @if ($error_message != 'kosong')

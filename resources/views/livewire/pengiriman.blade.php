@@ -11,11 +11,8 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Harga</th>
-                            <th scope="col">Jumlah Stok</th>
-                            <th scope="col">Satuan</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Jenis Pengiriman</th>
+                            <th scope="col">Biaya Pengiriman</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,10 +21,8 @@
                         @foreach ($data as $item)
                             <tr>
                                 <th scope="row">{{ $i }}</th>
-                                <td>{{ $item->nama_sayuran }}</td>
-                                <td>{{ $item->harga_sayuran }}</td>
-                                <td>{{ $item->jumlah_sayuran }}</td>
-                                <td>{{ $item->satuan }}</td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->biaya }}</td>
                                 <td>
                                     <button wire:click="show({{ $item->id }})" type="button"
                                         class="btnshowdetil btn btn-primary">Edit {{ $item->id }}</button>
@@ -66,26 +61,14 @@
                         <div class="col-6">
 
                             <div class="form-group">
-                                <label for="inputname"><strong>Nama Barang</strong></label>
+                                <label for="inputname"><strong>Jenis Pengiriman</strong></label>
                                 <input type="text" class="form-control" id="inputname" wire:model="data_nama" required>
                             </div>
 
 
                             <div class="form-group">
-                                <label for="inputharga"><strong>Harga</strong></label>
+                                <label for="inputharga"><strong>Biaya pengiriman</strong></label>
                                 <input type="number" class="form-control" id="inputharga" wire:model="data_harga"
-                                    required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputharga"><strong>Stok</strong></label>
-                                <input type="number" class="form-control" id="inputharga" wire:model="data_stok"
-                                    required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputstauan"><strong>Satuan</strong></label>
-                                <input type="text" class="form-control" id="inputstauan" wire:model="data_satuan"
                                     required>
                             </div>
 

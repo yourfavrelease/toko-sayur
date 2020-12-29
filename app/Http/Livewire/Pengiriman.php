@@ -2,15 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\WithPagination;
+use App\Models\pengiriman as ModelsPengiriman;
 use Livewire\Component;
-use App\Models\sayuran as ModelSayuran;
 
-
-class Sayur extends Component
+class Pengiriman extends Component
 {
-
-    use WithPagination;
 
     public $EDIT;
     public $form = "pasif";
@@ -24,22 +20,20 @@ class Sayur extends Component
 
     public $error_message = "kosong";
 
+
     public function render()
     {
-        $DATA = ModelSayuran::orderBy('updated_at', 'desc')->get();
-        return view('livewire.sayur', [
+        $DATA = ModelsPengiriman::orderBy('updated_at','desc')->get();
+        return view('livewire.pengiriman',[
             'data' => $DATA,
         ]);
     }
 
     public function show($id)
     {
-        $EDIT = ModelSayuran::where('id', $id)->first();
-        $this->data_nama = $EDIT->nama_sayuran;
-        $this->data_harga = $EDIT->harga_sayuran;
-        $this->data_stok = $EDIT->jumlah_sayuran;
-        $this->data_id = $EDIT->id;
-        $this->data_satuan = $EDIT->satuan;
+        $EDIT = ModelsPengiriman::where('id', $id)->first();
+        $this->data_nama = $EDIT->nama;
+        $this->data_harga = $EDIT->biaya;
         $this->form = "aktif";
         $this->form_type = "edit";
         $this->error_message = "kosong";
@@ -68,11 +62,9 @@ class Sayur extends Component
 
     public function submitadd()
     {
-        $data = new ModelSayuran();
-        $data->nama_sayuran = $this->data_nama;
-        $data->harga_sayuran = $this->data_harga;
-        $data->jumlah_sayuran = $this->data_stok;
-        $data->satuan = $this->data_satuan;
+        $data = new ModelsPengiriman();
+        $data->nama = $this->data_nama;
+        $data->biaya = $this->data_harga;
 
         try {
             $data->save();
@@ -84,16 +76,14 @@ class Sayur extends Component
     }
 
     public function destroy($id){
-        $EDIT = ModelSayuran::where('id', $id)->first();
+        $EDIT = ModelsPengiriman::where('id', $id)->first();
         $EDIT->delete();
     }
 
     public function submitedit($id){
-        $data = ModelSayuran::where('id', $id)->first();
-        $data->nama_sayuran = $this->data_nama;
-        $data->harga_sayuran = $this->data_harga;
-        $data->jumlah_sayuran = $this->data_stok;
-        $data->satuan = $this->data_satuan;
+        $data = ModelsPengiriman::where('id', $id)->first();
+        $data->nama = $this->data_nama;
+        $data->biaya = $this->data_harga;
 
         try {
             $data->save();

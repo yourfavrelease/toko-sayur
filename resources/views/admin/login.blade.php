@@ -15,7 +15,7 @@
 
     <div class=".container" style="overflow: hidden;">
         <div class="row align-items-center justify-content-md-center" style="height: 80vh; ">
-            <div class="col-2 px-4 py-4 rounded" style="background-color: rgb(224, 224, 224);">
+            <div class="col-lg-2 col-6 px-4 py-4 rounded" style="background-color: rgb(224, 224, 224);">
                 <form action="login" method="post">
                     @csrf
                     <div class="form-group text-center">
