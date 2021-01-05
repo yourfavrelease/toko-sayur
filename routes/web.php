@@ -7,8 +7,10 @@ use App\Models\pengiriman;
 use App\Models\pesanan;
 use Illuminate\Support\Facades\Route;
 use App\Models\sayuran as ModelSayuran;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 /*
@@ -220,13 +222,41 @@ Route::post('login', function(Request $request){
         if (Auth::attempt($credentials)) {
             // Authentication passed...
             return redirect('/admin/transaksi/list');
+        }else{
+            return redirect()->back()->with(['fail' => 'Password anda salah']);
         }
-        return redirect()->back();
 });
 
+Route::get('signin',function(){
+    return view('admin.signin');
+})->middleware('guest');
+
+Route::post('signin',function(Request $request){
+    $cek = User::where('email',$request->username)->first();
+
+    if($cek){
+        return redirect()->back()->with(['fail' => 'Username sudah digunakan']);
+    }else{
+        $data = new User();
+        $data->name = $request->username;
+        $data->email = $request->username;
+        $data->password = Hash::make($request->password);
+        $data->save();
+
+        $credentials = $request->only('username', 'password');
+        Auth::attempt($credentials);
+    }
+
+    return redirect('/admin/transaksi/list');
+})->middleware('guest');
+
+Route::get('admin',function(){
+    return redirect()->to('/admin/transaksi/list');
+});
 
 Route::middleware('auth')->group(function(){
 
+    
     Route::get('/logout', function () {
         
         Auth::logout();

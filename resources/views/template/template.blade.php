@@ -11,6 +11,20 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <style>
+        #bg-valid {
+            background-image: url(https://source.unsplash.com/1600x900/?vegetables);
+            background-position: center;
+            background-repeat: no-repeat;
+            /* background-attachment: fixed; */
+            background-size: 100%;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: opacity(60%);
+            /*     display: none; */
+        }
+
         .detail.identitas {
             border-bottom: 1px solid rgb(184, 184, 184);
         }
@@ -21,6 +35,9 @@
 
 <body>
 
+    <div id="bg-valid"> </div>
+
+    
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">

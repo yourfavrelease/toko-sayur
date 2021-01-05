@@ -130,8 +130,8 @@
     <div class="row my-4 justify-content-md-center">
         <div class="col-12 col-lg-10 text-center">
 
-            <table class="table table-bordered">
-                <thead class="thead-dark">
+            <table class="table table-dark table-bordered">
+                <thead class="">
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nama Barang</th>

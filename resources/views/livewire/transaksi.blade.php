@@ -22,7 +22,7 @@
         <div class="col px-5">
             <div class="container">
 
-                <table class="table">
+                <table class="table table-dark">
                     <thead>
                         <tr>
                             <th scope="col">#</th>

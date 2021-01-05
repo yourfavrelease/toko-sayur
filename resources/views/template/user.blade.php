@@ -11,8 +11,22 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     @yield('css')
-@livewireStyles
+    @livewireStyles
     <style>
+        #bg-valid {
+            background-image: url(https://source.unsplash.com/1600x900/?vegetables);
+            background-position: center;
+            background-repeat: no-repeat;
+            /* background-attachment: fixed; */
+            background-size: 100%;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: opacity(60%);
+            /*     display: none; */
+        }
+
         #bodykeranjang {
             position: fixed;
             right: 100px;
@@ -53,6 +67,9 @@
 </head>
 
 <body>
+
+    <div id="bg-valid"> </div>
+
     <!-- navbar  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -65,11 +82,11 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item {{ ($page == 'dashboard') ? 'active' : ''}}">
+                    <li class="nav-item {{ $page == 'dashboard' ? 'active' : '' }}">
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ ($page == 'lacak') ? 'active' : ''}}" href="/lacak">Lacak</a>
+                        <a class="nav-link {{ $page == 'lacak' ? 'active' : '' }}" href="/lacak">Lacak</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">
@@ -191,7 +208,7 @@
                             <label for="inputpembayaran">Metode Pembayaran</label>
                             <select name="payment" class="form-control" id="inputpembayaran">
                                 @foreach ($payment as $item)
-                                <option value="{{$item->nama_metode}}">{{$item->nama_metode}}</option>
+                                    <option value="{{ $item->nama_metode }}">{{ $item->nama_metode }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -201,7 +218,7 @@
                             <label for="inputpembayaran">Pengiriman</label>
                             <select name="city" class="form-control" id="inputpembayaran">
                                 @foreach ($shipping as $item)
-                                <option value="{{$item->id}}">{{$item->nama}} - Rp {{$item->biaya}}</option>
+                                    <option value="{{ $item->id }}">{{ $item->nama }} - Rp {{ $item->biaya }}</option>
                                 @endforeach
                             </select>
                         </div>

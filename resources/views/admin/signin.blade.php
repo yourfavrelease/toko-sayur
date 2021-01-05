@@ -25,31 +25,29 @@
         }
 
     </style>
-
 </head>
 
 <body>
     <div id="bg-valid"> </div>
 
-
     <div class=".container" style="overflow: hidden;">
         <div class="row align-items-center justify-content-md-center" style="height: 80vh; ">
             <div class="col-lg-2 col-6 px-4 py-4 rounded" style="background-color: rgb(224, 224, 224);">
                 <p class="h3 text-center mb-3">
-                    Login Admin
+                    Register Admin
                 </p>
-                <form action="login" method="post">
+                <form action="signin" method="post">
                     @csrf
                     <div class="form-group text-center">
                         <label for="inputname"><strong>Username</strong></label>
-                        <input name="email" type="text" class="form-control" id="inputname">
+                        <input name="username" type="text" class="form-control" id="inputname">
                     </div>
                     <div class="form-group text-center">
                         <label for="inputpw"><strong>Password</strong></label>
                         <input name="password" type="password" class="form-control" id="inputpw">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success" style="width: 100%;">Login</button>
+                        <button type="submit" class="btn btn-success" style="width: 100%;">Register</button>
                     </div>
                 </form>
                 @if ($message = Session::get('fail'))
@@ -58,7 +56,7 @@
                         <strong>{{ $message }}</strong>
                     </div>
                 @endif
-                <p class="text-center mt-3">Doesnt have account ? <a href="/signin">SignIn</a></p>
+                <p class="text-center mt-3">have account ? <a href="/login">LogIn</a></p>
             </div>
         </div>
     </div>
