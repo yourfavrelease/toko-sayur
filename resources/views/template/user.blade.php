@@ -68,13 +68,14 @@
 
 <body>
 
+
     <div id="bg-valid"> </div>
 
     <!-- navbar  -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
 
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Dashboard</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -196,7 +197,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="inputname">Nama Pembeli</label>
-                            <input name="name" type="text" class="form-control" id="inputname">
+                            <input name="name1" type="text" class="form-control" id="inputname">
                         </div>
                         <div class="form-group">
                             <label for="inputalamat">Alamat Pembeli</label>
@@ -230,8 +231,19 @@
 
                 </div>
             </div>
+        
         </div>
     </div>
+    <footer class="footer">
+           <div class="container">
+            <nav>
+                <p class="copyright text-center">
+                &copy; 2022 <a href="https://">bakoel</a>
+                </p>
+           </nav>
+          </div>
+         </footer>
+
 
     @livewireScripts
     @yield('js')
@@ -268,7 +280,7 @@
                 btnkeranjang.classList.toggle("btn-success");
                 btnkeranjang.classList.toggle("btn-danger");
             }
-        }
+        } 
 
     </script>
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

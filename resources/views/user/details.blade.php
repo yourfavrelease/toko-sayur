@@ -33,7 +33,7 @@
 
 
                             <!-- jumlah tersedia -->
-                            <p class="h4">Terisa <strong>{{ $item->jumlah_sayuran }} {{$item->satuan}}</strong></p>
+                            <p class="h4">Tersisa <strong>{{ $item->jumlah_sayuran }} {{$item->satuan}}</strong></p>
                         </div>
                     </div>
                     <div class="row mt-4">
