@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\metodepembayaran as ModelMetode;
+use App\Http\Controllers\CartController
 
-class MetodePembayaranController extends Controller
+ class MetodePembayaranController extends Controller
 {
     /**
      * 

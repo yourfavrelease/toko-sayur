@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
+Route::get('/',['']);
+
 Route::get('/', function () {
     $DATA = ModelSayuran::orderBy('updated_at', 'desc')->get();
     $PAYMENT = metodepembayaran::get();

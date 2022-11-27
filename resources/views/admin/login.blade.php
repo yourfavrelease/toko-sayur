@@ -34,7 +34,7 @@
 
         <div class=".container" style="overflow: hidden;">
             <div class="row align-items-center justify-content-md-center" style="height: 80vh; ">
-                <div class="col-lg-2 col-6 px-4 py-4 rounded" style="background-color: rgb(224, 224, 224);">
+                <div class="col-lg-3 col-6 px-4 py-4 rounded" style="background-color: rgb(224, 224, 224);">
                     <p class="h3 text-center mb-3">
                         Login Admin
                     </p>
