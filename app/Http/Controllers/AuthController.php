@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
 
@@ -26,5 +27,23 @@ class AuthController extends Controller
         }
 
         return redirect()->back();
+    }
+    public function register( Request $request){
+        $validasi = \Validator::make($request->all(), [
+            'name'=>'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        if ($validasi->fails()) {
+            return view('/user/register');
+        } else {
+            $user = new User;
+            $user->name=$request['name'];
+            $user->email = $request['email'];
+            $user->password = Hash::make($request['password']);
+            $user->role = ("user");
+            $user->save();
+            return redirect('/');
+        }
     }
 }
