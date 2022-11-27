@@ -24,11 +24,8 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-
 Route::get('/register','App\Http\Controllers\AuthController@register');
 Route::post('/register','App\Http\Controllers\AuthController@register');
-
-
 Route::get('/', function () {
     $DATA = ModelSayuran::orderBy('updated_at', 'desc')->get();
     $PAYMENT = metodepembayaran::get();

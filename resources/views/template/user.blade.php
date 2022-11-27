@@ -193,7 +193,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="checkout" method="post">
+                    <form action="checkout" method="/details/7">
                         @csrf
                         <div class="form-group">
                             <label for="inputname">Nama Pembeli</label>
